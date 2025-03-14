@@ -38,31 +38,30 @@ def merge_sort(arr):
   
   mid = len(arr) // 2
   # print(arr, mid)
-  print(f"Left {arr[:mid]} - Right {arr[mid:]}")
+  print(f"Left {arr[:mid]} - Right {arr[mid:]}\n")
   
   left = merge_sort(arr[:mid])
   right = merge_sort(arr[mid:])
 
-  merge(left, right)
-
+  return merge(left, right)
 
 def merge(left, right):
-  sorted_arr = []
-  i = j = 0
-  print(f"left {left} right {right}")
-  while i < len(left) and j < len(right):
-    print(f"Comparing {left[i]} with {right[j]}")
-    if(left[i] < right[j]):
-      sorted_arr.append(left[i])
-      i += 1
-    else:
-      sorted_arr.append(right[j])
-      j += 1
+    sorted_array = []
+    i = j = 0
+    print(f"{left} & {right}")
+    while i < len(left) and j < len(right):
+        if left[i] < right[j]:
+            sorted_array.append(left[i])
+            i += 1
+        else:
+            sorted_array.append(right[j])
+            j += 1
+    print(f"Sorted array: {sorted_array}")
+    sorted_array.extend(left[i:])
+    sorted_array.extend(right[j:])
+    print(f"Sorted array extended: {sorted_array}")
     
-    # sorted_arr.extend(left[i:])
-    # sorted_arr.extend(right[j:])
-
-  print(sorted_arr)
+    return sorted_array
 
 arr = [8, 4, 7, 3, 1, 5, 9, 2]
-merge_sort(arr)
+print(merge_sort(arr))
